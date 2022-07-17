@@ -36,7 +36,7 @@ const createWater = () => {
     let waterID = 1;
     for (i=1; i<37; i++) {
         let waterTile = document.createElement("img");
-        waterTile.setAttribute("src", "../Git_Fishin/img/fish_shadow_transparent.gif");
+        waterTile.setAttribute("src", "../Git_Fishin/img/Transparent 2.PNG");
         waterTile.id = waterID.toString();
         waterTile.className = "fish";
         waterID ++;
@@ -44,3 +44,36 @@ const createWater = () => {
     }
 };
 createWater();
+
+//Make a fish appear on three random water tiles and reset
+
+const images = [
+    "../Git_Fishin/img/fish_shadow_transparent.gif",
+    "../Git_Fishin/img/Transparent 2.PNG"
+];
+
+let fishTimer = 0;
+
+const createFish = () => {
+    for(i=0; i<3; i++) {
+        let numID = getRandomInt(36);
+        let fish = document.getElementById(numID.toString());
+        fish.setAttribute("src", images[0]);
+        setTimeout(() => {
+                fish.setAttribute("src", images[1]);
+                console.log("fish gone");
+            }, 4500);
+    }
+}
+
+const timePasses = () => {
+    setInterval(() => {
+        fishTimer ++;
+        console.log(fishTimer);
+        createFish();
+    }, 5000);
+};
+
+
+timePasses();
+
