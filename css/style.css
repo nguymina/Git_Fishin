@@ -41,6 +41,8 @@ body {
 }
 
 #UI {
+    position: relative;
+
     background-image: url(../img/background_single.png);
     background-color: aliceblue;
     background-position: center;
@@ -57,7 +59,7 @@ body {
     border-style: solid;
     border-color: #825a3c;
     
-
+    font-family: 'VT323', monospace;
 }
 
 #p1score {

@@ -8,6 +8,50 @@ Create player that can be named
 Create function for water and fish
 */
 
+const fishes = [
+    smelt = {
+        name: "Smelt",
+        cost: 20,
+    },
+    crucianCarp = {
+        name: "Crucian Carp",
+        cost: 60,
+    },
+    piranha = {
+        name: "Piranha",
+        cost: 100,
+    },
+    yellowPerch = {
+        name: "Yellow Perch",
+        cost: 150,
+    },
+    rainbowTrout = {
+        name: "Rainbow Trout",
+        cost: 200,
+    },
+    tilapia = {
+        name: "Tilapia",
+        cost: 210,
+    },
+    largemouthBass = {
+        name: "Largemouth Bass",
+        cost: 250,
+    },
+    betta = {
+        name: "Betta",
+        cost: 280,
+    },
+    catFish = {
+        name: "Catfish",
+        cost: 300,
+    },
+    kingSalmon = {
+        name: "kingSalmon",
+        cost: 600,
+    },
+];
+
+
 class Player {
     constructor(name) {
         this.name = name;
@@ -30,7 +74,7 @@ let waterPlacement = document.getElementById('water');
 console.log(waterPlacement);
 console.log("connected");
 
-//Make a dom creation that generates 36 water tiles and each tile gets individual id
+//Create water tiles
 
 const createWater = () => {
     let waterID = 1;
@@ -45,7 +89,7 @@ const createWater = () => {
 };
 createWater();
 
-//Make a fish appear on three random water tiles and reset
+//fish appear and disappear
 
 const images = [
     "../Git_Fishin/img/fish_shadow_transparent.gif",
@@ -75,5 +119,4 @@ const timePasses = () => {
 };
 
 
-timePasses();
 
