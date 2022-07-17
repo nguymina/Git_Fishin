@@ -33,7 +33,14 @@ console.log("connected");
 //Make a dom creation that generates 36 water tiles and each tile gets individual id
 
 const createWater = () => {
+    let waterID = 1;
     for (i=1; i<37; i++) {
-        document.createElement
+        let waterTile = document.createElement("img");
+        waterTile.setAttribute("src", "../Git_Fishin/img/fish_shadow_transparent.gif");
+        waterTile.id = waterID.toString();
+        waterTile.className = "fish";
+        waterID ++;
+        waterPlacement.appendChild(waterTile);
     }
-}
+};
+createWater();

@@ -56,5 +56,35 @@ body {
     border-bottom: 10px;
     border-style: solid;
     border-color: #825a3c;
+    
 
+}
+
+#p1score {
+    margin-left: 70px;
+    margin-top: 100px;
+}
+
+#p1rod {
+    margin-left: 70px;
+    margin-top: 25px;
+}
+
+.fish {
+    height: 16px;
+    width: 16px;
+    padding: 14px;
+}
+
+#water {
+    margin-top: 150px;
+    margin-left: 140px;
+    margin-right: 140px;
+
+    height: 300px;
+    width: 450px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
