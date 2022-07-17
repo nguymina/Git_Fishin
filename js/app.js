@@ -33,5 +33,7 @@ console.log("connected");
 //Make a dom creation that generates 36 water tiles and each tile gets individual id
 
 const createWater = () => {
-    document.createElement("img");
+    for (i=1; i<37; i++) {
+        document.createElement
+    }
 }

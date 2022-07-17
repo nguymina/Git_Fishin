@@ -1,0 +1,60 @@
+body {
+    background-image: linear-gradient(#7dc9d1,#092633);
+    background-image: url(https://img.freepik.com/premium-vector/seamless-pattern-with-hand-drawn-cute-colorful-fish-blue-background_558186-581.jpg?w=2000);
+    background-size: contain;
+    height: 100%;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+#sidebar {
+    width: 150px;
+    height: 730px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-family: 'VT323', monospace;
+    text-align: center;
+
+    background-color: #deb67e;
+    
+    border: 10px;
+    border-style: solid;
+    border-color: #825a3c;
+}
+
+.sidebarbut {
+    background-color: #825a3c;
+    padding: 5px;
+    
+    color: #edb387;
+    font-size: 15px;
+    font-family: 'VT323', monospace;
+
+    border: none;
+    border-radius: 5px;
+}
+
+#UI {
+    background-image: url(../img/background_single.png);
+    background-color: aliceblue;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    
+    min-width: 730px;
+    min-height: 730px;
+
+    border-top: 10px;
+    border-left: 0px;
+    border-right: 10px;
+    border-bottom: 10px;
+    border-style: solid;
+    border-color: #825a3c;
+
+}
