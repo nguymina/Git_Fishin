@@ -1,12 +1,14 @@
 body {
-    background-image: linear-gradient(#7dc9d1,#092633);
-    background-image: url(https://img.freepik.com/premium-vector/seamless-pattern-with-hand-drawn-cute-colorful-fish-blue-background_558186-581.jpg?w=2000);
-    background-size: contain;
-    height: 100%;
+    background-color: #4a664b;
+    background-image: url(https://i.ytimg.com/vi/tBDVLey1DIE/maxresdefault.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: auto;
     width: auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 10px;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
@@ -21,18 +23,18 @@ body {
     font-family: 'VT323', monospace;
     text-align: center;
 
-    background-color: #deb67e;
+    background-color: rgb(129, 145, 104);
     
     border: 10px;
     border-style: solid;
-    border-color: #825a3c;
+    border-color: rgb(255, 239, 179);
 }
 
 .sidebarbut {
-    background-color: #825a3c;
+    background-color: aliceblue;
     padding: 5px;
     
-    color: #edb387;
+    color: #ad5050;
     font-size: 15px;
     font-family: 'VT323', monospace;
 
@@ -41,7 +43,7 @@ body {
 }
 
 #UI {
-    background-image: url(../img/background_single.png);
+    background-image: url(../img/background2-0.jpeg);
     background-color: aliceblue;
     background-position: center;
     background-size: contain;
@@ -55,18 +57,44 @@ body {
     border-right: 10px;
     border-bottom: 10px;
     border-style: solid;
-    border-color: #825a3c;
+    border-color: rgb(255, 239, 179);
     
     font-family: 'VT323', monospace;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#p1Sprite {
+    height: 160px;
+    width: 160px;
+    margin-top: -20px;
+    margin-left: 36px;
 }
 
 #p1 {
     margin-left: 60px;
-    margin-top: 100px;
-    margin-right: 590px;;
+    margin-top: 85px;
+    margin-right: auto;
 
     text-align: center;
+    color: maroon;
 }
+
+#caughtTextAlert {
+    position: absolute;
+    z-index: 1;
+    margin-top: 100px;
+    margin-left: 225px;
+    margin-right: auto;
+
+
+    background-color: #deb67e;
+    
+    color: maroon;
+    text-align: center;
+}
+
 
 .fish {
     height: 16px;
@@ -75,7 +103,7 @@ body {
 }
 
 #water {
-    margin-top: 200px;
+    margin-top: 100px;
     margin-left: 140px;
     margin-right: 140px;
 
@@ -87,3 +115,25 @@ body {
     justify-content: space-around;
 }
 
+
+#startmenu {
+    z-index: 1;
+    position: absolute;
+    margin-left: 160px;
+    background-color: whitesmoke;
+
+    min-height: 350px;
+    min-width: 650px;
+
+    border: 10px;
+    border-style: solid;
+    border-radius: 15px;
+
+    font-family: 'VT323', monospace;
+    text-align: center;
+}
+
+#title {
+    font-size: 50px;
+    padding: 100px 0px 100px 0px;
+}

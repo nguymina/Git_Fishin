@@ -63,78 +63,75 @@ class Player {
             tryCatch = fishes[9];
             this.score += tryCatch.cost;
             text = ("You caught a " + tryCatch.name);
-            console.log(text); // test to see if this works; Switch to DOM later
+            catchText.textContent = text;
         }
         //Catfish 4%
         if (x<99 && x>94) {
             tryCatch = fishes[8];
             this.score += tryCatch.cost;
             text = ("You caught a " + tryCatch.name);
-            console.log(text); // test to see if this works; Switch to DOM later
+            catchText.textContent = text;
         }
         // Betta 5%
         if (x<95 && x>89) {
             tryCatch = fishes[7];
             this.score += tryCatch.cost;
             text = ("You caught a " + tryCatch.name);
-            console.log(text); // test to see if this works; Switch to DOM later
+            catchText.textContent = text;
         }
         //Largemouth Bass 5%
         if (x<90 && x>84) {
             tryCatch = fishes[6];
             this.score += tryCatch.cost;
             text = ("You caught a " + tryCatch.name);
-            console.log(text); // test to see if this works; Switch to DOM later
+            catchText.textContent = text;
         }
         //Tilapia 5%
         if (x<85 && x>79) {
             tryCatch = fishes[5];
             this.score += tryCatch.cost;
             text = ("You caught a " + tryCatch.name);
-            console.log(text); // test to see if this works; Switch to DOM later
+            catchText.textContent = text;
         }
         //Rainbox Trout 10%
         if (x<80 && x>69) {
             tryCatch = fishes[4];
             this.score += tryCatch.cost;
             text = ("You caught a " + tryCatch.name);
-            console.log(text); // test to see if this works; Switch to DOM later
+            catchText.textContent = text;
         }
         //Yellow Perch 15%
         if (x<70 && x>54) {
             tryCatch = fishes[3];
             this.score += tryCatch.cost;
             text = ("You caught a " + tryCatch.name);
-            console.log(text); // test to see if this works; Switch to DOM later
+            catchText.textContent = text;
         }
         //Piranha 15%
         if (x<55 && x>39) {
             tryCatch = fishes[2];
             this.score += tryCatch.cost;
             text = ("You caught a " + tryCatch.name);
-            console.log(text); // test to see if this works; Switch to DOM later
+            catchText.textContent = text;
         }
         //Crucian Carp 20%
         if (x<40 && x>19) {
             tryCatch = fishes[1];
             this.score += tryCatch.cost;
             text = ("You caught a " + tryCatch.name);
-            console.log(text); // test to see if this works; Switch to DOM later
+            catchText.textContent = text;
         }
         //Smelt 20%
         if (x<20) {
             tryCatch = fishes[0];
             this.score += tryCatch.cost;
             text = ("You caught a " + tryCatch.name);
-            console.log(text); // test to see if this works; Switch to DOM later
+            catchText.textContent = text;
         }
     }
 };
 
-//Start
-
 const p1 = new Player (); // Tester player Remember to comment out
-
 
 // Random number generator
 function getRandomInt(max) {
@@ -146,8 +143,11 @@ let waterPlacement = document.getElementById('water');
 
 let moneyMade = document.getElementById('p1score');
 
+let catchAlert = document.getElementById('caughtTextAlert');
+    let catchText = document.getElementById('fishTextAlert');
 
-//Image references
+
+//Image references upload these later
 const images = [
     "../Git_Fishin/img/fish_shadow_transparent.gif",
     "../Git_Fishin/img/Transparent 2.PNG"
@@ -173,14 +173,16 @@ const fishCaught = () => {
     let fishID = getRandomInt(100);
     p1.oldRod(fishID);
     moneyMade.textContent = ("Score: $" + p1.score);
+
+    //Display what was caught
 };
 
 //fish appear and disappear
-let fishTimer = 0; //To see if everything is working
 
 const createFish = () => {
-    //Creates 3 fish at each instance in random spots
-    for(i=0; i<3; i++) {        
+    let x = getRandomInt(3);
+    //Creates x fish at each instance in random spots
+    for(i=0; i<=x; i++) {        
         let numID = getRandomInt(36);
         let fish = document.getElementById(numID.toString());
         fish.setAttribute("src", images[0]);
@@ -196,13 +198,23 @@ const createFish = () => {
 }
 
 //Runs function to continuously create fish and remove fish
+let time = 0;
 const timePasses = () => {
-    setInterval(() => {
-        fishTimer ++;
-        console.log(fishTimer);
+    time = setInterval(() => {
         createFish();
     }, 5000);
 };
+timePasses();
+//Start
+const startGame = () => {
+    timePasses();
+    createWater();
+};
 
+// Reset for multi-use
 
-
+const reset = () => {
+    clearInterval(time);
+};
+let resetBut = document.getElementById("reset");
+resetBut.addEventListener("click", reset);
