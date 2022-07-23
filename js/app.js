@@ -222,20 +222,10 @@ const timePasses = () => {
     }, 5000);
 };
 
-// Reset Functions
+//Reset
 const reset = () => {
     clearInterval(time);
-    // if (playerTwo === true) {
-    //     playerTwo = false;
-    //     while(p2Placement.firstChild) {
-    //         p2Placement.removeChild(p2Placement.firstChild);
-    //     };
-    //     p2SpritePlacement.removeChild();
-    // }
 };
-let resetBut = document.getElementById("reset");
-resetBut.addEventListener("click", reset);
-
 
 // Catch a fish!
 let currentPlayer = p1;
@@ -301,17 +291,19 @@ const fishCaught = () => {
     };
 };
 
-
 //Player two
 
 const createPlayer2 = () => {
     playerTwo = true;
 
+    let p2 = new Player ();
+
     p2Score.textContent = "Score: $0";
     p2Rod.textContent = "Old Rod";
 
     let p2Reel = document.createElement("button");
-    p2Reel.id = "reel";
+    p2Reel.id = "reel2";
+    p2Reel.className = "button";
     p2Reel.textContent = "Reel";
     p2Placement.appendChild(p2Reel);
 
@@ -320,6 +312,7 @@ const createPlayer2 = () => {
     p2Sprite.id = "p2Sprite";
     p2SpritePlacement.appendChild(p2Sprite);
 
+    let store = document.getElementById("store");
     store.remove();
 
     numberFish.textContent = "Fish Remaining = 10";
@@ -329,7 +322,8 @@ const createPlayer2 = () => {
 //Start Menu
 
 const removePopUp = () => {
-    popUp.remove();
+    let popUpStart = document.getElementById("popup")
+    popUpStart.remove();
 };
 
 const singlePlayerButton = () => {
@@ -348,6 +342,52 @@ const twoPlayerButton = () => {
 let p2Start = document.getElementById("p2start");
 p2Start.addEventListener("click", twoPlayerButton);
 
-//Win Text
 
+// Hard Reset Functions
+const hardReset = () => {
+    reset();
+    // Player Two Reset
+    if(playerTwo === true) {
+        playerTwo = false;
+        
+        p2Score.textContent = "";
+        p2Rod.textContent = "";
+        let p2SpriteRemoval = document.getElementById("p2Sprite");
+            p2SpritePlacement.removeChild(p2SpriteRemoval);
+        let p2ReelRemoval = document.getElementById("reel2");
+            p2Placement.removeChild(p2ReelRemoval);
+        numberFish.textContent = "";
 
+        let storeButton = document.createElement("button");
+        storeButton.className = "button";
+        storeButton.id = "store";
+        storeButton.textContent = "Store";
+        sideBar.appendChild(storeButton);
+    };
+
+    //Recreate Start Menu
+    let startUp = document.createElement("article");
+    startUp.id = "popup";
+    document.body.appendChild(startUp);
+        let startMenu = document.createElement("div");
+        startMenu.id = "startmenu";
+        startUp.appendChild(startMenu);
+            let startTitle = document.createElement("h1");
+                startTitle.id = "title";
+                startTitle.textContent = "Let's Git Fishing";
+                startMenu.appendChild(startTitle);
+            let p1Button = document.createElement("button");
+                p1Button.id = "p1start";
+                p1Button.className = "button";
+                p1Button.textContent = "One Player";
+                p1Button.addEventListener("click", singlePlayerButton);
+                startMenu.appendChild(p1Button);
+            let p2Button = document.createElement("button");
+                p2Button.id = "p2start";
+                p2Button.className = "button";
+                p2Button.textContent = "Two Player"
+                p2Button.addEventListener("click", twoPlayerButton);
+                startMenu.appendChild(p2Button);
+};
+let resetBut = document.getElementById("reset");
+resetBut.addEventListener("click", hardReset);
