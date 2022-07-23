@@ -132,6 +132,7 @@ class Player {
 };
 
 const p1 = new Player (); // Tester player Remember to comment out
+const p2 = new Player ();
 
 // Random number generator
 function getRandomInt(max) {
@@ -141,10 +142,33 @@ function getRandomInt(max) {
 // DOMS
 let waterPlacement = document.getElementById('water');
 
-let moneyMade = document.getElementById('p1score');
+let p1Score = document.getElementById('p1score');
 
 let catchAlert = document.getElementById('caughtTextAlert');
     let catchText = document.getElementById('fishTextAlert');
+
+let sideBar = document.getElementById("sidebar")
+
+let popUp = document.getElementById("popup");
+    let store = document.getElementById("store");
+    let instructions = document.getElementById("instructions");
+
+let p2Placement = document.getElementById("p2");
+let p2SpritePlacement = document.getElementById("p2Position")
+
+// DOM creation for P2
+
+let p2Score = document.createElement("h2");
+    p2Score.id = "p2score";
+    p2Placement.appendChild(p2Score);
+
+let p2Rod = document.createElement("p");
+    p2Rod.id = "p2rod";
+    p2Placement.appendChild(p2Rod);
+
+let numberFish = document.createElement("h3");
+    numberFish.id = "fishRemaining";
+    sideBar.appendChild(numberFish);
 
 
 //Image references upload these later
@@ -153,6 +177,9 @@ const images = [
     "../Git_Fishin/img/Transparent 2.PNG"
 ];
 
+//Two Player Variables
+let fishCounter = 4;
+let playerTwo = false;
 
 //Create water tiles
 const createWater = () => {
@@ -168,17 +195,7 @@ const createWater = () => {
 };
 createWater();
 
-// Catch a fish!
-const fishCaught = () => {
-    let fishID = getRandomInt(100);
-    p1.oldRod(fishID);
-    moneyMade.textContent = ("Score: $" + p1.score);
-
-    //Display what was caught
-};
-
 //fish appear and disappear
-
 const createFish = () => {
     let x = getRandomInt(3);
     //Creates x fish at each instance in random spots
@@ -186,7 +203,7 @@ const createFish = () => {
         let numID = getRandomInt(36);
         let fish = document.getElementById(numID.toString());
         fish.setAttribute("src", images[0]);
-        fish.addEventListener("click", fishCaught);
+        fish.addEventListener("click", fishCaught, {once: true}); // allows the function to only run once, will switch once to false, function only runs when once is true - Mozilla
         
         //Switches gif to transparent image
         setTimeout(() => {
@@ -195,7 +212,7 @@ const createFish = () => {
                 console.log("fish gone");
             }, 4500);
     }
-}
+};
 
 //Runs function to continuously create fish and remove fish
 let time = 0;
@@ -204,17 +221,133 @@ const timePasses = () => {
         createFish();
     }, 5000);
 };
-timePasses();
-//Start
-const startGame = () => {
-    timePasses();
-    createWater();
-};
 
-// Reset for multi-use
-
+// Reset Functions
 const reset = () => {
     clearInterval(time);
+    // if (playerTwo === true) {
+    //     playerTwo = false;
+    //     while(p2Placement.firstChild) {
+    //         p2Placement.removeChild(p2Placement.firstChild);
+    //     };
+    //     p2SpritePlacement.removeChild();
+    // }
 };
 let resetBut = document.getElementById("reset");
 resetBut.addEventListener("click", reset);
+
+
+// Catch a fish!
+let currentPlayer = p1;
+
+const fishCaught = () => {
+    let fishID = getRandomInt(100);
+
+    //Two Player Fish remaining
+    if(playerTwo === true) {
+        fishCounter --;
+        numberFish.textContent = ("Fish Remaining = " + fishCounter);
+    };
+    // Invokes fishing rod
+    currentPlayer.oldRod(fishID);
+    // Displays player score
+    if (currentPlayer === p2) {
+        p2Score.textContent = ("Score: $" + p2.score);
+    }
+    p1Score.textContent = ("Score: $" + p1.score);
+    //Two Player Switch Player
+    if(playerTwo === true) {
+        if(currentPlayer === p1) {
+            currentPlayer = p2;
+        } else {
+            currentPlayer = p1;
+        }
+    };
+    console.log(currentPlayer);
+    
+    //Stops fish spawn
+    reset();
+
+    // OK button
+    let okButton = document.createElement("button");
+    okButton.textContent = "OK";
+    okButton.className = "button";
+    catchAlert.appendChild(okButton);
+    if (fishCounter != 0) {
+        okButton.addEventListener("click", timePasses);
+    };
+    okButton.addEventListener("click", () => {
+        catchText.textContent = "";
+        okButton.remove();
+        console.log("removed");
+    });
+
+        // Winner
+    if (fishCounter === 0) {
+        let winPop = document.createElement("article");
+        winPop.id = "popup";
+        winPop.className = "winpopup";
+        document.body.appendChild(winPop);
+        if (p1.score > p2.score) {
+            winPop.textContent = "Player 1 Wins!"
+        } else {
+            winPop.textContent = "Player 2 Wins!"
+        }
+
+        let resetInstructions = document.createElement("p");
+        resetInstructions.textContent = "Press Reset to Play Again!";
+        resetInstructions.className = "winpopup";
+        winPop.appendChild(resetInstructions);
+    };
+};
+
+
+//Player two
+
+const createPlayer2 = () => {
+    playerTwo = true;
+
+    p2Score.textContent = "Score: $0";
+    p2Rod.textContent = "Old Rod";
+
+    let p2Reel = document.createElement("button");
+    p2Reel.id = "reel";
+    p2Reel.textContent = "Reel";
+    p2Placement.appendChild(p2Reel);
+
+    let p2Sprite = document.createElement("img");
+    p2Sprite.setAttribute("src", "img/Player2.GIF");
+    p2Sprite.id = "p2Sprite";
+    p2SpritePlacement.appendChild(p2Sprite);
+
+    store.remove();
+
+    numberFish.textContent = "Fish Remaining = 10";
+};
+
+
+//Start Menu
+
+const removePopUp = () => {
+    popUp.remove();
+};
+
+const singlePlayerButton = () => {
+    let p1 = new Player ();
+    timePasses();
+    removePopUp();
+};
+let p1Start = document.getElementById("p1start");
+p1Start.addEventListener("click", singlePlayerButton);
+
+const twoPlayerButton = () => {
+    createPlayer2();
+    timePasses();
+    removePopUp();
+}
+let p2Start = document.getElementById("p2start");
+p2Start.addEventListener("click", twoPlayerButton);
+
+//Win Text
+
+

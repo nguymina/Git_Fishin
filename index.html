@@ -6,32 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Montserrat+Alternates:wght@300&family=VT323&display=swap" rel="stylesheet">
 </head>
 </html>
 <body>
     <article id="sidebar">
         <h1>Git Fishing</h1>
-        <button class="sidebarbut" id="instructions">Instructions</button>
-        <button class="sidebarbut" id="reset">Reset</button>
-        <button class="sidebarbut">Store</button>
-        <button class="sidebarbut">Fish Appraiser</button>  
+        <button class="button" id="instructions">Instructions</button>
+        <button class="button" id="reset">Reset</button>
+        <button class="button" id="store">Store</button> 
     </article>
     <article id="UI">
         <div id="p1">
-            <p class="p1text" id="p1score">Score: 0</p>
-            <p class="p1text" id="p1rod">Old Rod</p>
+            <h2 id="p1score">Score: $0</h2>
+            <p id="p1rod">Old Rod</p>
+            <button class="button" id="reel">Reel</button>
         </div>
         <img id="p1Sprite" src="../Git_Fishin/img/Player1.GIF">
         <div id="caughtTextAlert">
             <p id="fishTextAlert"></p>
         </div>
+        <div id="p2">
+        </div>
+        <div id="p2Position">
+        </div>
         <div id="water"></div>
     </article>
-    <!-- <article id="startmenu">
-        <div id="title">Aaron be stinky</div>
-        <button class="startbutton" id="p1start">One Player</button>
-        <button class="startbutton" id="p2start">Two Player</button>
-    </article> -->
+    <article id="popup">
+        <div id="startmenu">
+            <h1 id="title">Let's Git Fishing</h1>
+            <button class="button" id="p1start">One Player</button>
+            <button class="button" id="p2start">Two Player</button>
+        </div>
+    </article>
     <script src="js/app.js"></script>
 </body>
 </html>
