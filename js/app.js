@@ -43,31 +43,31 @@ const fishes = [
 ];
 
 //Reeling function
-let grabReelButton = document.getElementsByClassName("reelButton");
+// let grabReelButton = document.getElementsByClassName("reelButton");
 
-let caught = null;
-let startHP = 20;
-let fishPulling = 0;
+// let caught = null;
+// let startHP = 20;
+// let fishPulling = 0;
 
-const pulling = (strength) => {
-    fishPulling = setInterval(() => {
-        startHP -= strength;
-    }, 250);
-};
+// const pulling = (strength) => {
+//     fishPulling = setInterval(() => {
+//         startHP -= strength;
+//     }, 250);
+// };
 
-const reelIt = () => {
-    startHP += 2;
-    console.log(startHP);
-    if (startHP >= 30) {
-        caught = true;
-        clearInterval(fishPulling);
-        startHP = 20;
-    } else if (startHP <= 0) {
-        caught = false;
-        clearInterval(fishPulling);
-        startHP = 20;
-    };
-};
+// const reelIt = () => {
+//     startHP += 2;
+//     console.log(startHP);
+//     if (startHP >= 30) {
+//         caught = true;
+//         clearInterval(fishPulling);
+//         startHP = 20;
+//     } else if (startHP <= 0) {
+//         caught = false;
+//         clearInterval(fishPulling);
+//         startHP = 20;
+//     };
+// };
 
 
 //Player Class
@@ -196,6 +196,9 @@ let p2Rod = document.createElement("p");
 let numberFish = document.createElement("h3");
     numberFish.id = "fishRemaining";
     sideBar.appendChild(numberFish);
+let playerTurn = document.createElement("h3");
+    playerTurn.id = "playerTurn";
+    sideBar.appendChild(playerTurn);
 
 
 //Image references upload these later
@@ -256,6 +259,7 @@ const reset = () => {
 
 // Catch a fish!
 let currentPlayer = p1;
+let textTurn = "It is Player 2's Turn!";
 
 const fishCaught = () => {
     let fishID = getRandomInt(100);
@@ -264,6 +268,7 @@ const fishCaught = () => {
     if(playerTwo === true) {
         fishCounter --;
         numberFish.textContent = ("Fish Remaining = " + fishCounter);
+        playerTurn.textContent = textTurn;
     };
     // Invokes fishing rod
     currentPlayer.oldRod(fishID);
@@ -276,8 +281,10 @@ const fishCaught = () => {
     if(playerTwo === true) {
         if(currentPlayer === p1) {
             currentPlayer = p2;
+            textTurn = "It is Player 1's Turn!";
         } else {
             currentPlayer = p1;
+            textTurn = "It is Player 2's Turn!";
         }
     };
     console.log(currentPlayer);
@@ -301,6 +308,8 @@ const fishCaught = () => {
 
         // Winner
     if (fishCounter === 0) {
+        catchText.textContent = "";
+        okButton.remove();
         let winPop = document.createElement("article");
             winPop.className = "popup";
             winPop.id = "winpopup";
@@ -327,11 +336,11 @@ const createPlayer2 = () => {
     p2Score.textContent = "Score: $0";
     p2Rod.textContent = "Old Rod";
 
-    let p2Reel = document.createElement("button");
-    p2Reel.id = "reel2";
-    p2Reel.className = "reelButton";
-    p2Reel.textContent = "Reel";
-    p2Placement.appendChild(p2Reel);
+    // let p2Reel = document.createElement("button");
+    // p2Reel.id = "reel2";
+    // p2Reel.className = "reelButton";
+    // p2Reel.textContent = "Reel";
+    // p2Placement.appendChild(p2Reel);
 
     let p2Sprite = document.createElement("img");
     p2Sprite.setAttribute("src", "img/Player2.GIF");
@@ -342,6 +351,7 @@ const createPlayer2 = () => {
     // store.remove();
 
     numberFish.textContent = "Fish Remaining = 4";
+    playerTurn.textContent = "It is Player 1's Turn!"
 };
 
 
@@ -381,9 +391,12 @@ const hardReset = () => {
         p2Rod.textContent = "";
         let p2SpriteRemoval = document.getElementById("p2Sprite");
             p2SpritePlacement.removeChild(p2SpriteRemoval);
-        let p2ReelRemoval = document.getElementById("reel2");
-            p2Placement.removeChild(p2ReelRemoval);
+        // let p2ReelRemoval = document.getElementById("reel2");
+        //     p2Placement.removeChild(p2ReelRemoval);
         numberFish.textContent = "";
+        
+        let winpopup = document.getElementById("winpopup");
+        winpopup.remove();
 
         // let storeButton = document.createElement("button");
         // storeButton.className = "button";

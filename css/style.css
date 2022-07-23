@@ -83,7 +83,7 @@ body {
 #p1Sprite, #p2Sprite {
     height: 160px;
     width: 160px;
-    margin-top: -26px;
+    margin-top: 2px;
     margin-left: 36px;
 }
 
@@ -102,7 +102,7 @@ body {
 }
 
 #p2Position {
-    margin-top: 176px;
+    margin-top: 147px;
     margin-left: 500px;
     position: absolute;
 }
@@ -186,7 +186,9 @@ body {
     font-size: 40px;
 }
 
-
+#midnightMode {
+    margin-top: 40px;
+}
 
 .midnightMode {
     background-image: linear-gradient(#2a2b49ff, #1d142fff);
