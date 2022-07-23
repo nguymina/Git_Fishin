@@ -10,12 +10,13 @@ body {
     align-items: center;
     margin: 10px;
 
+    color: maroon;
     font-family: 'Montserrat Alternates', sans-serif;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Montserrat+Alternates:wght@300&family=VT323&display=swap');
 
-#sidebar {
+.sidebar {
     width: 150px;
     height: 730px;
     display: flex;
@@ -31,18 +32,33 @@ body {
     border-color: rgb(238, 214, 125);
 }
 
-.sidebarbut {
+.button, .reelButton {
     background-color: aliceblue;
     padding: 5px;
     
-    color: #ad5050;
+    color: maroon;
     font-size: 15px;
 
     border: none;
     border-radius: 5px;
 }
 
-#UI {
+.instructions {
+    text-align: center;
+    font-size: 22px;
+    text-decoration: underline overline;
+}
+#instructions {
+    font-size: 18px;
+    text-decoration: none;
+
+    padding: 5px;
+
+    list-style-type: none;
+}
+
+
+.UI {
     background-image: url(../img/background2-0.jpeg);
     background-color: aliceblue;
     background-position: center;
@@ -67,7 +83,7 @@ body {
 #p1Sprite, #p2Sprite {
     height: 160px;
     width: 160px;
-    margin-top: -20px;
+    margin-top: -26px;
     margin-left: 36px;
 }
 
@@ -77,7 +93,6 @@ body {
     margin-right: auto;
 
     text-align: center;
-    color: maroon;
 }
 
 #p2 {
@@ -87,22 +102,20 @@ body {
 }
 
 #p2Position {
-    margin-top: 169px;
+    margin-top: 176px;
     margin-left: 500px;
     position: absolute;
 }
 
-#caughtTextAlert {
+.caughtTextAlert {
     position: absolute;
     z-index: 1;
     margin-top: 100px;
     margin-left: 225px;
     margin-right: auto;
 
-
     background-color: #deb67e;
     
-    color: maroon;
     text-align: center;
 }
 
@@ -127,7 +140,7 @@ body {
 }
 
 
-#popup {
+.popup {
     z-index: 1;
     position: absolute;
     margin-left: 160px;
@@ -142,10 +155,9 @@ body {
     border-color: rgb(238, 214, 125);
 
     text-align: center;
-    color: maroon;
 }
 
-.winpopup {
+#winpopup {
     font-size: 30px;
     text-decoration: underline overline;
 
@@ -162,8 +174,36 @@ body {
     height: 30px;
 }
 
+
+
 #title {
     font-size: 50px;
     padding: 50px 0px 50px 0px;
     text-decoration: underline overline;
+}
+
+#miniTitle {
+    font-size: 40px;
+}
+
+
+
+.midnightMode {
+    background-image: linear-gradient(#2a2b49ff, #1d142fff);
+    color: aliceblue;
+
+    background-color: #3b5671ff;
+}
+.midnightModeUI {
+    background-image: url(../img/Midnight_Background.jpg);
+    border-color: #ad5050;
+}
+.midnightBar {
+    background-color: #3b5671ff;
+    color: aliceblue;
+    border-color: #ad5050;
+}
+.midnightButtons {
+    background-color: #eab6b8ff;
+    color: aliceblue;
 }

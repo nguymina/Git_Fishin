@@ -13,20 +13,25 @@
 </head>
 </html>
 <body>
-    <article id="sidebar">
-        <h1>Git Fishing</h1>
-        <button class="button" id="instructions">Instructions</button>
+    <article class="sidebar">
+        <h1 id="miniTitle">Git Fishing</h1>
+        <div class="instructions">Instructions:</div>
+        <ul class="instructions" id="instructions">
+            <li>Choose number of Players.</li>
+            <li>Click on a fish to catch it.</li>
+            <li>Profit!</li>
+        </ul>
         <button class="button" id="reset">Reset</button>
-        <button class="button" id="store">Store</button> 
+        <button class="button" id="midnightMode">Midnight Mode</button> 
     </article>
-    <article id="UI">
+    <article class="UI" id="UI">
         <div id="p1">
             <h2 id="p1score">Score: $0</h2>
             <p id="p1rod">Old Rod</p>
-            <button class="button" id="reel">Reel</button>
+            <button class="reelButton" id="reel">Reel</button>
         </div>
         <img id="p1Sprite" src="../Git_Fishin/img/Player1.GIF">
-        <div id="caughtTextAlert">
+        <div class="caughtTextAlert">
             <p id="fishTextAlert"></p>
         </div>
         <div id="p2">
@@ -35,7 +40,7 @@
         </div>
         <div id="water"></div>
     </article>
-    <article id="popup">
+    <article class="popup" id="popup">
         <div id="startmenu">
             <h1 id="title">Let's Git Fishing</h1>
             <button class="button" id="p1start">One Player</button>

@@ -1,6 +1,3 @@
-/*
-*/
-
 //Fish List
 const fishes = [
     smelt = {
@@ -45,6 +42,33 @@ const fishes = [
     },
 ];
 
+//Reeling function
+let grabReelButton = document.getElementsByClassName("reelButton");
+
+let caught = null;
+let startHP = 20;
+let fishPulling = 0;
+
+const pulling = (strength) => {
+    fishPulling = setInterval(() => {
+        startHP -= strength;
+    }, 250);
+};
+
+const reelIt = () => {
+    startHP += 2;
+    console.log(startHP);
+    if (startHP >= 30) {
+        caught = true;
+        clearInterval(fishPulling);
+        startHP = 20;
+    } else if (startHP <= 0) {
+        caught = false;
+        clearInterval(fishPulling);
+        startHP = 20;
+    };
+};
+
 
 //Player Class
 class Player {
@@ -56,11 +80,12 @@ class Player {
     //Fishing Rod(s)
     oldRod (x) {
         let tryCatch = null;
-        let text = "";
+        let text = "It got away!";
         
         //King Salmon 1%
         if (x === 99) {
             tryCatch = fishes[9];
+            pulling(5);
             this.score += tryCatch.cost;
             text = ("You caught a " + tryCatch.name);
             catchText.textContent = text;
@@ -143,14 +168,16 @@ function getRandomInt(max) {
 let waterPlacement = document.getElementById('water');
 
 let p1Score = document.getElementById('p1score');
+let p1Rod = document.getElementById("p1rod");
 
-let catchAlert = document.getElementById('caughtTextAlert');
+let catchAlert = document.querySelector('.caughtTextAlert');
     let catchText = document.getElementById('fishTextAlert');
 
-let sideBar = document.getElementById("sidebar")
+let sideBar = document.querySelector(".sidebar")
+let uI = document.getElementById("UI");
 
-let popUp = document.getElementById("popup");
-    let store = document.getElementById("store");
+let popUp = document.querySelector(".popup");
+    // let store = document.getElementById("store");
     let instructions = document.getElementById("instructions");
 
 let p2Placement = document.getElementById("p2");
@@ -186,24 +213,24 @@ const createWater = () => {
     let waterID = 0;
     for (i=0; i<36; i++) {
         let waterTile = document.createElement("img");
-        waterTile.setAttribute("src", images[1]);
-        waterTile.id = waterID.toString();
-        waterTile.className = "fish";
-        waterID ++;
-        waterPlacement.appendChild(waterTile);
+            waterTile.setAttribute("src", images[1]);
+            waterTile.id = waterID.toString();
+            waterTile.className = "fish";
+            waterID ++;
+            waterPlacement.appendChild(waterTile);
     }
 };
 createWater();
 
 //fish appear and disappear
 const createFish = () => {
-    let x = getRandomInt(3);
+    let x = getRandomInt(2);
     //Creates x fish at each instance in random spots
     for(i=0; i<=x; i++) {        
         let numID = getRandomInt(36);
         let fish = document.getElementById(numID.toString());
-        fish.setAttribute("src", images[0]);
-        fish.addEventListener("click", fishCaught, {once: true}); // allows the function to only run once, will switch once to false, function only runs when once is true - Mozilla
+            fish.setAttribute("src", images[0]);
+            fish.addEventListener("click", fishCaught, {once: true}); // allows the function to only run once, will switch once to false, function only runs when once is true - Mozilla
         
         //Switches gif to transparent image
         setTimeout(() => {
@@ -219,7 +246,7 @@ let time = 0;
 const timePasses = () => {
     time = setInterval(() => {
         createFish();
-    }, 5000);
+    }, 4505);
 };
 
 //Reset
@@ -260,9 +287,9 @@ const fishCaught = () => {
 
     // OK button
     let okButton = document.createElement("button");
-    okButton.textContent = "OK";
-    okButton.className = "button";
-    catchAlert.appendChild(okButton);
+        okButton.textContent = "OK";
+        okButton.className = "button";
+        catchAlert.appendChild(okButton);
     if (fishCounter != 0) {
         okButton.addEventListener("click", timePasses);
     };
@@ -275,24 +302,23 @@ const fishCaught = () => {
         // Winner
     if (fishCounter === 0) {
         let winPop = document.createElement("article");
-        winPop.id = "popup";
-        winPop.className = "winpopup";
-        document.body.appendChild(winPop);
+            winPop.className = "popup";
+            winPop.id = "winpopup";
+            document.body.appendChild(winPop);
         if (p1.score > p2.score) {
             winPop.textContent = "Player 1 Wins!"
         } else {
             winPop.textContent = "Player 2 Wins!"
-        }
+        };
 
         let resetInstructions = document.createElement("p");
-        resetInstructions.textContent = "Press Reset to Play Again!";
-        resetInstructions.className = "winpopup";
-        winPop.appendChild(resetInstructions);
+            resetInstructions.textContent = "Press Reset to Play Again!";
+            resetInstructions.className = "winpopup";
+            winPop.appendChild(resetInstructions);
     };
 };
 
 //Player two
-
 const createPlayer2 = () => {
     playerTwo = true;
 
@@ -303,7 +329,7 @@ const createPlayer2 = () => {
 
     let p2Reel = document.createElement("button");
     p2Reel.id = "reel2";
-    p2Reel.className = "button";
+    p2Reel.className = "reelButton";
     p2Reel.textContent = "Reel";
     p2Placement.appendChild(p2Reel);
 
@@ -312,20 +338,19 @@ const createPlayer2 = () => {
     p2Sprite.id = "p2Sprite";
     p2SpritePlacement.appendChild(p2Sprite);
 
-    let store = document.getElementById("store");
-    store.remove();
+    // let store = document.getElementById("store");
+    // store.remove();
 
-    numberFish.textContent = "Fish Remaining = 10";
+    numberFish.textContent = "Fish Remaining = 4";
 };
 
 
 //Start Menu
-
 const removePopUp = () => {
-    let popUpStart = document.getElementById("popup")
+    let popUpStart = document.querySelector(".popup")
     popUpStart.remove();
 };
-
+//single player
 const singlePlayerButton = () => {
     let p1 = new Player ();
     timePasses();
@@ -333,7 +358,7 @@ const singlePlayerButton = () => {
 };
 let p1Start = document.getElementById("p1start");
 p1Start.addEventListener("click", singlePlayerButton);
-
+//two player
 const twoPlayerButton = () => {
     createPlayer2();
     timePasses();
@@ -350,6 +375,8 @@ const hardReset = () => {
     if(playerTwo === true) {
         playerTwo = false;
         
+        p2.score = 0;
+        p2.rod = "Old Rod";
         p2Score.textContent = "";
         p2Rod.textContent = "";
         let p2SpriteRemoval = document.getElementById("p2Sprite");
@@ -358,16 +385,16 @@ const hardReset = () => {
             p2Placement.removeChild(p2ReelRemoval);
         numberFish.textContent = "";
 
-        let storeButton = document.createElement("button");
-        storeButton.className = "button";
-        storeButton.id = "store";
-        storeButton.textContent = "Store";
-        sideBar.appendChild(storeButton);
+        // let storeButton = document.createElement("button");
+        // storeButton.className = "button";
+        // storeButton.id = "store";
+        // storeButton.textContent = "Store";
+        // sideBar.appendChild(storeButton);
     };
 
     //Recreate Start Menu
     let startUp = document.createElement("article");
-    startUp.id = "popup";
+    startUp.className = "popup";
     document.body.appendChild(startUp);
         let startMenu = document.createElement("div");
         startMenu.id = "startmenu";
@@ -388,6 +415,32 @@ const hardReset = () => {
                 p2Button.textContent = "Two Player"
                 p2Button.addEventListener("click", twoPlayerButton);
                 startMenu.appendChild(p2Button);
+    
+    //Reset Text
+    p1.score = 0;
+    p1.rod = "Old Rod";
+    p1Score.textContent = "Score: $0";
+    p1Rod.textContent = "Old Rod";
 };
 let resetBut = document.getElementById("reset");
 resetBut.addEventListener("click", hardReset);
+
+//Midnight Mode
+const midnightMode = () => {
+    let body = document.body;
+    let midnightButtons = document.querySelectorAll(".button");
+        body.classList.toggle("midnightMode");
+        uI.classList.toggle("midnightModeUI");
+        sideBar.classList.toggle("midnightBar");
+        catchAlert.classList.toggle("midnightBar");
+        popUp.classList.toggle("midnightBar");
+        console.log(midnightButtons)
+        
+        midnightButtons.forEach ((element) => {
+            element.classList.toggle("midnightButtons");
+        }); 
+        
+};
+
+let midnightButton = document.getElementById("midnightMode");
+    midnightButton.addEventListener("click", midnightMode);
